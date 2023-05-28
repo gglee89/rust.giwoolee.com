@@ -1,16 +1,9 @@
 fn main() {
-  let message = "Hello World";
-  let a = 10;
-  let c = 15;
-  println!("{}", print_welcome(message));
-  println!("{}", add(a, c));
-}
+  let message = String::from("Hello");
+  let message_2 = &message;
+  // message_2 is not owner of message
+  // message_2 is borrowing a reference to message
 
-fn print_welcome(text: &str) -> String {
-  return "Some text: ".to_owned() + text;
-}
-
-fn add(x: u32, y: u32) -> u32 {
-  let sum = x + y;
-  return sum
+  println!("{}", message);
+  println!("{}", message_2);
 }
