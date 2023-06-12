@@ -7,6 +7,3 @@ edition = "2021"
 
 [dependencies]
 
-[[bin]]
-name = "snake_game"
-path = "main.rs"
