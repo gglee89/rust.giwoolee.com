@@ -1,0 +1,3 @@
+{
+  "rust-analyzer.linkedProjects": ["./snake_game/Cargo.toml"]
+}
