@@ -1,5 +1,7 @@
-import init, { greet } from "snake_game";
+import init, { World } from "snake_game";
 
 init().then(() => {
-  greet("Philip 안녕");
+  const world = World.new();
+  const canvas = document.getElementById("snake-canvas");
+  const ctx = canvas.getContext("2d");
 });
