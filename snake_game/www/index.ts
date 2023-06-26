@@ -10,6 +10,7 @@ init().then((wasm) => {
 
   const canvas = <HTMLCanvasElement>document.getElementById("snake-canvas");
   const ctx = canvas.getContext("2d");
+
   canvas.height = worldWidth * CELL_SIZE;
   canvas.width = worldWidth * CELL_SIZE;
 
@@ -84,7 +85,7 @@ init().then((wasm) => {
     const fps = 3;
     setTimeout(() => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      world.update();
+      world.step();
       paint();
       // the method takes a callback to be invoked before the next repaint
       requestAnimationFrame(update);
