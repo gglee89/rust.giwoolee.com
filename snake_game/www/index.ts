@@ -9,11 +9,25 @@ init().then((wasm) => {
   const world = World.new(WORLD_WIDTH, SNAKE_SPAWN_IDX);
   const worldWidth = world.width();
 
+  const gameControlBtn = document.getElementById("game-control-btn");
+  const gameStatusLabel = document.getElementById("game-status");
   const canvas = <HTMLCanvasElement>document.getElementById("snake-canvas");
   const ctx = canvas.getContext("2d");
 
   canvas.height = worldWidth * CELL_SIZE;
   canvas.width = worldWidth * CELL_SIZE;
+
+  gameControlBtn.addEventListener("click", (_) => {
+    const gameStatus = world.game_status();
+
+    if (gameStatus === undefined) {
+      gameControlBtn.textContent = "Playing...";
+      world.start_game();
+      play();
+    } else {
+      location.reload();
+    }
+  });
 
   document.addEventListener("keydown", (e) => {
     switch (e.code) {
@@ -87,13 +101,18 @@ init().then((wasm) => {
     ctx.stroke(); // end drawing
   }
 
+  const drawGameStatus = () => {
+    gameStatusLabel.textContent = world.game_status_text();
+  };
+
   const paint = () => {
     drawSnake();
     drawWorld();
     drawReward();
+    drawGameStatus();
   };
 
-  function update() {
+  function play() {
     if (!ctx) return;
     const fps = 3;
     setTimeout(() => {
@@ -101,10 +120,9 @@ init().then((wasm) => {
       world.step();
       paint();
       // the method takes a callback to be invoked before the next repaint
-      requestAnimationFrame(update);
+      requestAnimationFrame(play);
     }, 1000 / fps);
   }
 
   paint();
-  update();
 });

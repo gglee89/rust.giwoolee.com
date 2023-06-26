@@ -23,6 +23,21 @@
         justify-content: center;
         flex-direction: column;
       }
+
+      .game-panel {
+        margin-bottom: 20px;
+      }
+
+      .flex {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+      }
+
+      .label {
+        font-weight: bold;
+        margin-right: 10px;
+      }
     </style>
   </head>
   <body>
@@ -33,7 +48,15 @@
       </p>
     <![endif]-->
     <div class="content-wrapper">
-      <span>here is my canvas</span>
+      <div class="game-panel">
+        <div class="flex">
+          <div class="label">Status:</div>
+          <div id="game-status">None</div>
+        </div>
+        <div class="flex">
+          <button id="game-control-btn">Play</button>
+        </div>
+      </div>
       <canvas id="snake-canvas"></canvas>
     </div>
     <script src="./bootstrap.js" async defer></script>
