@@ -1,7 +1,7 @@
 import init, { Direction, World } from "snake_game";
 
 init().then((wasm) => {
-  const CELL_SIZE = 16;
+  const CELL_SIZE = 20;
   const WORLD_WIDTH = 8;
   const SNAKE_SPAWN_IDX = Date.now() % (WORLD_WIDTH * WORLD_WIDTH);
 
@@ -27,8 +27,6 @@ init().then((wasm) => {
         break;
       case "ArrowLeft":
         world.change_snake_dir(Direction.Left);
-        break;
-      default:
         break;
     }
   });
@@ -61,14 +59,12 @@ init().then((wasm) => {
       world.snake_length()
     );
 
-    ctx.beginPath(); // start drawing
-
     snakeCells.forEach((cellIdx, i) => {
       const col = cellIdx % worldWidth;
       const row = Math.floor(cellIdx / worldWidth);
 
       ctx.fillStyle = i === 0 ? "#7878db" : "#000000";
-
+      ctx.beginPath(); // start drawing
       ctx.fillRect(col * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE);
     });
 
